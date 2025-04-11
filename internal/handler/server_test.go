@@ -3,7 +3,6 @@ package handler
 import (
 	"bytes"
 	"encoding/json"
-	"log"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -44,9 +43,7 @@ func TestURLServer(t *testing.T) {
 
 	initializers.LoadEnv()
 	cfg := initializers.LoadConfig()
-	if err := logger.LoadLogger(cfg); err != nil {
-		log.Fatal(err)
-	}
+	logger.LoadLogger(cfg)
 	db := database.LoadDatabase()
 
 	srv := NewServer(cfg, db)

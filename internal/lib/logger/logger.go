@@ -1,6 +1,8 @@
 package logger
 
 import (
+	"log"
+
 	"github.com/DevAthhh/url-shortener/internal/config"
 	"go.uber.org/zap"
 )
@@ -9,7 +11,7 @@ var (
 	Logger *zap.Logger
 )
 
-func LoadLogger(cfg *config.Config) error {
+func LoadLogger(cfg *config.Config) {
 	env := cfg.Enviroment
 
 	var logger *zap.Logger
@@ -23,9 +25,8 @@ func LoadLogger(cfg *config.Config) error {
 	}
 
 	if err != nil {
-		return err
+		log.Fatal(err)
 	}
 
 	Logger = logger
-	return nil
 }
